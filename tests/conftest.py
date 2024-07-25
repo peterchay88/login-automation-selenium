@@ -7,7 +7,7 @@ def driver(request):
     if request.config.getoption("--browser") == "chrome":
         my_driver = webdriver.Chrome()
     elif request.config.getoption("--browser") == "firefox":
-        my_driver = webdriver.FireFox()
+        my_driver = webdriver.Firefox()
     else:
         raise ValueError(f"Invalid value. Expected chrome or firefox but got {request.config.getoption('--browser')}")
     yield my_driver
