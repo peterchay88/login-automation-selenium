@@ -10,6 +10,7 @@ def driver(request):
         my_driver = webdriver.Firefox()
     else:
         raise ValueError(f"Invalid value. Expected chrome or firefox but got {request.config.getoption('--browser')}")
+    my_driver.implicitly_wait(10)
     yield my_driver
     my_driver.close()
 
