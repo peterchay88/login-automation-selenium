@@ -76,3 +76,17 @@ def test_stale_element_reference(driver):
     wait = WebDriverWait(driver, 10)
     assert wait.until(EC.invisibility_of_element_located((By.ID, "instructions")),
                       "Error! instructions element still located on the page")
+
+
+@pytest.mark.exception_tc05
+def test_time_out(driver):
+    # Open page
+    driver.get("https://practicetestautomation.com/practice-test-exceptions/")
+    # Click add button
+    add_btn = driver.find_element(By.ID, "add_btn")
+    add_btn.click()
+    # Wait 3 seconds for the second input field to be displayed
+    wait = WebDriverWait(driver, 6)
+    wait.until(EC.visibility_of_element_located((By.XPATH, "//div[@id='row2']/input[@class='input-field']")),
+               "Error, row 2 is not visible yet")
+
