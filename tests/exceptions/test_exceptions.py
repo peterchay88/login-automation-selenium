@@ -62,3 +62,17 @@ def test_invalid_element_state(driver):
     assert input_field.get_attribute("value") == new_text, \
         f"Error unexpected value. Expected {new_text}. Actual {input_field.get_attribute('value')}"
 
+
+@pytest.mark.exception_tc04
+def test_stale_element_reference(driver):
+    # Open page
+    driver.get("https://practicetestautomation.com/practice-test-exceptions/")
+
+    # Push add button
+    add_btn = driver.find_element(By.ID, "add_btn")
+    add_btn.click()
+
+    # Verify instruction text element is no longer displayed
+    wait = WebDriverWait(driver, 10)
+    assert wait.until(EC.invisibility_of_element_located((By.ID, "instructions")),
+                      "Error! instructions element still located on the page")
