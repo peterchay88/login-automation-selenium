@@ -39,3 +39,26 @@ def test_element_not_interactable_exception(driver):
     )
     assert confirmation.text == "Row 2 was saved"
 
+
+@pytest.mark.exception_tc03
+def test_invalid_element_state(driver):
+    # Open webpage
+    driver.get("https://practicetestautomation.com/practice-test-exceptions/")
+    # Clear input field
+    edit_btn = driver.find_element(By.ID, "edit_btn")
+    edit_btn.click()
+
+    input_field = driver.find_element(By.XPATH, "//div[@id='row1']/input[@class='input-field']")
+    wait = WebDriverWait(driver, 10)
+    wait.until(EC.element_to_be_clickable(input_field))
+    input_field.clear()
+    # Type text into the input field
+    new_text = "this is a test"
+    input_field.send_keys(new_text)
+
+    save_btn = driver.find_element(By.ID, "save_btn")
+    save_btn.click()
+    # verify text changed
+    assert input_field.get_attribute("value") == new_text, \
+        f"Error unexpected value. Expected {new_text}. Actual {input_field.get_attribute('value')}"
+
