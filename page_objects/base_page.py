@@ -17,7 +17,7 @@ class BasePage:
         :param locator:
         :return:
         """
-        self._driver.find_element(*locator)
+        return self._driver.find_element(*locator)
 
     def _type_into_element(self, locator: tuple, text: str, time: int = 10):
         """
@@ -68,5 +68,20 @@ class BasePage:
             return self._find_web_element(locator).is_displayed()
         except NoSuchElementException:
             return False
+
+    def open_web_page(self, url: str):
+        """
+        This method opens a web page at the url passed in the argument
+        :return:
+        """
+        self._driver.get(url)
+
+    def _get_element_text(self, locator: tuple, time: int = 10) -> str:
+        """
+        Returns the header text from the web page when you log in successfully
+        :return:
+        """
+        self._wait_until_element_is_visible(locator, time)
+        return self._driver.find_element(locator).text
 
 

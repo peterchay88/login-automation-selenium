@@ -1,7 +1,5 @@
 from selenium.webdriver.common.by import By
 from selenium.webdriver.remote.webdriver import WebDriver
-from selenium.webdriver.support.wait import WebDriverWait
-from selenium.webdriver.support import expected_conditions as EC
 from page_objects.base_page import BasePage
 
 
@@ -14,12 +12,12 @@ class LoginPage(BasePage):
     def __init__(self, driver: WebDriver):
         super().__init__(driver)
 
-    def open_web_page(self):
+    def open_browser(self):
         """
         This method opens a web page
         :return:
         """
-        self._driver.get(self.__url)
+        super().open_web_page(self.__url)
 
     def execute_login(self, username: str, password: str):
         """
