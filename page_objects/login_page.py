@@ -17,7 +17,7 @@ class LoginPage(BasePage):
         This method opens a web page
         :return:
         """
-        super().open_web_page(self.__url)
+        super()._open_web_page(self.__url)
 
     def execute_login(self, username: str, password: str):
         """

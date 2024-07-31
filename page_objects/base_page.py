@@ -48,7 +48,7 @@ class BasePage:
         :return:
         """
         wait = WebDriverWait(self._driver, time)
-        wait.until(EC.visibility_of_element_located(*locator))
+        wait.until(EC.visibility_of_element_located(locator))
 
     @property
     def current_url(self) -> str:
@@ -58,7 +58,7 @@ class BasePage:
         """
         return self._driver.current_url
 
-    def is_displayed(self, locator: tuple) -> bool:
+    def _is_displayed(self, locator: tuple) -> bool:
         """
         This method checks to see if the element on the page is displayed
         :param locator:
@@ -69,7 +69,7 @@ class BasePage:
         except NoSuchElementException:
             return False
 
-    def open_web_page(self, url: str):
+    def _open_web_page(self, url: str):
         """
         This method opens a web page at the url passed in the argument
         :return:

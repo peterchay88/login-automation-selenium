@@ -33,4 +33,4 @@ class LoggedInSuccessfully(BasePage):
         Checks to see if the logout button is displayed
         :return:
         """
-        return super().is_displayed(locator=self.__log_out_button)
+        return super()._is_displayed(locator=self.__log_out_button)

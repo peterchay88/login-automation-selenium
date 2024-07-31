@@ -22,7 +22,7 @@ class TestNegative:
         time.sleep(2)
         # Verify the error message is displayed
         error_msg = driver.find_element(By.ID, "error")
-        assert error_msg.is_displayed()
+        assert error_msg._is_displayed()
         # Verify error message text is Your username is invalid!
         error_msg_text = error_msg.text
         assert error_msg_text == "Your username is invalid!"
@@ -42,6 +42,6 @@ class TestNegative:
         time.sleep(2)
 
         error_msg = driver.find_element(By.ID, "error")
-        error_msg.is_displayed()
+        error_msg._is_displayed()
         assert error_msg.text == "Your password is invalid!"
 
