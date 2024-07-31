@@ -9,7 +9,7 @@ class TestPositive:
         # Navigate to web page
         driver.get("https://practicetestautomation.com/practice-test-login/")
         # Type username student into username field
-        username_locator = driver.find_element(by=By.XPATH, value="//input[@id='username']")
+        username_locator = driver.find_element(by=By.ID, value="username")
         username_locator.send_keys("student")
         # Type password Password123 into password field
         password_locator = driver.find_element(by=By.NAME, value="password")
