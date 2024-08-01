@@ -21,7 +21,8 @@ class LoginPage(BasePage):
 
     def execute_login(self, username: str, password: str):
         """
-        This method attempts to log in via the username and password passed as arguments
+        This method attempts to log in via the username and password passed as arguments. Once the username and
+        password are entered then we click the submit
         :param username: Username used during login
         :param password: Password used during login
         :return:
