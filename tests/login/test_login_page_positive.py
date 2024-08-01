@@ -2,6 +2,8 @@ import pytest
 from page_objects.login_page import LoginPage
 from page_objects.logged_in_successfully import LoggedInSuccessfully
 
+pytestmark = [pytest.mark.positive, pytest.mark.login]
+
 
 class TestPositive:
 

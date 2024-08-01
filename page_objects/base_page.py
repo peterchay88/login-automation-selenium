@@ -58,13 +58,14 @@ class BasePage:
         """
         return self._driver.current_url
 
-    def _is_displayed(self, locator: tuple) -> bool:
+    def _is_displayed(self, locator: tuple, time: int = 10) -> bool:
         """
         This method checks to see if the element on the page is displayed
         :param locator:
         :return:
         """
         try:
+            self._wait_until_element_is_visible(locator, time)
             return self._find_web_element(locator).is_displayed()
         except NoSuchElementException:
             return False
