@@ -47,5 +47,5 @@ class LoginPage(BasePage):
         This method checks the text of the error message
         :return:
         """
-        return super()._get_element_text(locator=self.__login_error)
+        return super()._get_element_text(locator=self.__login_error, time=3)
 
