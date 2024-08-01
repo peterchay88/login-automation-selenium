@@ -81,12 +81,12 @@ class ExceptionsPage(BasePage):
         """
         return super()._get_element_text(locator=self.__saved_confirmation_message)
 
-    def get_text_from_row_one_input(self) -> str:
+    def get_value_from_row_one_input(self) -> str:
         """
         This method returns the text in the row one input field on the exceptions page
         :return:
         """
-        return super()._get_element_text(locator=self.__first_row_input)
+        return super()._get_attribute(locator=self.__first_row_input, attribute="value")
 
     def add_to_list_of_favorite_foods(self, text: str):
         """

@@ -99,5 +99,17 @@ class BasePage:
         self._wait_until_element_is_visible(locator, time)
         self._find_web_element(locator).clear()
 
+    def _get_attribute(self, locator: tuple, attribute: str, time: int = 10):
+        """
+        This method gets the attribute of the web element passed in the locator argument
+        :param locator: Web element locator
+        :param time: Specified time for external wait
+        :param attribute: Attribute to fetch from web element
+        :return:
+        """
+        self._wait_until_element_is_visible(locator, time)
+        self._find_web_element(locator).get_attribute(attribute)
+
+
 
 
