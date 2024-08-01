@@ -18,9 +18,9 @@ class TestPositive:
             (f"Unexpected value for current url. Expected {logged_in_page.get_expected_url}. "
              f"Actual {login_page.current_url}")
 
-        # # After you are logged in verify that logged in successfully exists on the page
-        # assert logged_in_page.get_header_text == "Logged In Successfully", \
-        #     f"Unexpected value for header text. Actual {logged_in_page.get_header_text}"
+        # After you are logged in verify that logged in successfully exists on the page
+        assert logged_in_page.get_header_text == "Logged In Successfully", \
+            f"Unexpected value for header text. Actual {logged_in_page.get_header_text}"
         # # Verify that the log-out button exists on the page
         #
         # assert logged_in_page.is_logout_button_displayed, "Error logout button is not displayed"

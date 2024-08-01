@@ -82,6 +82,6 @@ class BasePage:
         :return:
         """
         self._wait_until_element_is_visible(locator, time)
-        return self._driver.find_element(locator).text
+        return self._find_web_element(locator).text
 
 
