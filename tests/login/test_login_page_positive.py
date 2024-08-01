@@ -10,7 +10,7 @@ class TestPositive:
         login_page = LoginPage(driver=driver)
         # Navigate to web page
         login_page.open_browser()
-        # Type username student into username field & password Password123 into password field. Then Push submit button
+        # Type student into username field &  Password123 into password field. Then Push submit button
         login_page.execute_login(username="student", password="Password123")
 
         # Verify new page URL contains practicetestautomation.com/logged-in-successfully/

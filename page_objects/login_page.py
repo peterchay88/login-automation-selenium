@@ -8,6 +8,7 @@ class LoginPage(BasePage):
     __username_field = (By.ID, "username")
     __password_field = (By.NAME, "password")
     __submit_button = (By.XPATH, "//button[@class='btn']")
+    __login_error = (By.ID, "error")
 
     def __init__(self, driver: WebDriver):
         super().__init__(driver)
@@ -33,4 +34,18 @@ class LoginPage(BasePage):
         super()._type_into_element(locator=self.__password_field, text=password)
         # Push submit button
         super()._click(locator=self.__submit_button)
+
+    def check_if_error_msg_exists(self) -> bool:
+        """
+        This method checks to see if the error message exists after a bad login attempt
+        :return:
+        """
+        return super()._is_displayed(locator=self.__login_error)
+
+    def check_error_message_text(self) -> str:
+        """
+        This method checks the text of the error message
+        :return:
+        """
+        return super()._get_element_text(locator=self.__login_error)
 
