@@ -48,7 +48,9 @@ class BasePage:
         :return:
         """
         wait = WebDriverWait(self._driver, time)
-        wait.until(EC.visibility_of_element_located(locator))
+        wait.until(EC.visibility_of_element_located(locator),
+                   message=f"Error Element not found in the before the timeout duration. "
+                           f"Timeout duration: {time} seconds")
 
     @property
     def current_url(self) -> str:
