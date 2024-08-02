@@ -1,5 +1,7 @@
 from selenium.webdriver.common.by import By
 from selenium.webdriver.remote.webdriver import WebDriver
+from selenium.webdriver.remote.webelement import WebElement
+
 from page_objects.base_page import BasePage
 
 
@@ -13,6 +15,7 @@ class ExceptionsPage(BasePage):
     __row_two_save_button = (By.XPATH, "//div[@id='row2']/button[@id='save_btn']")
     __remove_button = (By.ID, "remove_btn")
     __saved_confirmation_message = (By.ID, "confirmation")
+    __instructions_text = (By.ID, "instructions")
 
     def __init__(self, driver: WebDriver):
         super().__init__(driver)
@@ -87,6 +90,14 @@ class ExceptionsPage(BasePage):
         :return:
         """
         return super()._get_attribute(locator=self.__first_row_input, attribute="value")
+
+    def check_if_instructions_element_is_gone(self) -> WebElement:
+        """
+        This method checks to see if the instructions text on the exceptions page is
+        still showing or not
+        :return:
+        """
+        return super()._wait_until_element_is_not_visible(locator=self.__instructions_text)
 
     def add_to_list_of_favorite_foods(self, text: str):
         """

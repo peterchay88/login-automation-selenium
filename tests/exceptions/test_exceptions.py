@@ -1,8 +1,6 @@
 import pytest
-from selenium.webdriver.common.by import By
-from selenium.webdriver.support.ui import WebDriverWait
-from selenium.webdriver.support import expected_conditions as EC
 from page_objects.exceptions_page import ExceptionsPage
+
 
 pytestmark = [pytest.mark.exceptions]
 
@@ -71,7 +69,11 @@ class TestExceptions:
         :param driver:
         :return:
         """
-        pass
+        exceptions_page = ExceptionsPage(driver=driver)
+        exceptions_page.open_webpage()
+        exceptions_page.click_add_button()
+        assert exceptions_page.check_if_instructions_element_is_gone(), \
+            "Error. Instructions element is still found on the web page."
 
     @pytest.mark.exception_tc05
     def test_time_out(self, driver):

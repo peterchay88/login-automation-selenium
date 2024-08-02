@@ -42,13 +42,25 @@ class BasePage:
 
     def _wait_until_element_is_visible(self, locator: tuple, time: int = 10):
         """
-        This method acts as a wrapper for the selenium external wait
+        This method acts as a wrapper for the selenium external wait.
+        Wait until the web element is visible on the web page
         :param locator: Web element locator
         :param time: Specified time for external wait
         :return:
         """
         wait = WebDriverWait(self._driver, time)
         wait.until(EC.visibility_of_element_located(locator))
+
+    def _wait_until_element_is_not_visible(self, locator: tuple, time: int = 10) -> WebElement:
+        """
+        This method acts as a wrapper for the selenium external wait.
+        Wait until the web element is not visible on the web page anymore
+        :param locator: Web element locator
+        :param time: Specified time for external wait
+        :return: True if the element is NOT visible. False if element is still visible
+        """
+        wait = WebDriverWait(self._driver, time)
+        return wait.until(EC.invisibility_of_element_located(locator))
 
     @property
     def current_url(self) -> str:
