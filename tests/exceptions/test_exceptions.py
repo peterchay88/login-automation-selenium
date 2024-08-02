@@ -80,8 +80,12 @@ class TestExceptions:
         """
         1. Open page
         2. Click add button
-        3. Wait 3 seconds for the second input field to be displayed
+        3. Wait  for the second input field to be displayed
         :param driver:
         :return:
         """
-        pass
+        exceptions_page = ExceptionsPage(driver=driver)
+        exceptions_page.open_webpage()
+        exceptions_page.click_add_button()
+        exceptions_page.is_row_two_displayed(time=6)
+

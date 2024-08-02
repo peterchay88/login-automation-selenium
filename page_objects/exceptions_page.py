@@ -55,12 +55,12 @@ class ExceptionsPage(BasePage):
         """
         super()._click(locator=self.__row_two_save_button)
 
-    def is_row_two_displayed(self) -> bool:
+    def is_row_two_displayed(self, time: int = 10) -> bool:
         """
         This method checks to see if row 2 on the exceptions page is displayed
         :return:
         """
-        return super()._is_displayed(locator=self.__second_row_input, time=6)
+        return super()._is_displayed(locator=self.__second_row_input, time=time)
 
     def is_saved_confirmation_message_displayed(self) -> bool:
         """
