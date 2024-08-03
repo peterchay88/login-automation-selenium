@@ -1,12 +1,15 @@
 import pytest
 from selenium import webdriver
+import logging as logger
 
 
 @pytest.fixture(scope="session")
 def driver(request):
     if request.config.getoption("--browser") == "chrome":
+        logger.info("Launching Tests on Chrome")
         my_driver = webdriver.Chrome()
     elif request.config.getoption("--browser") == "firefox":
+        logger.info("Launching Tests on FireFox")
         my_driver = webdriver.Firefox()
     else:
         raise TypeError(f"Invalid value. Expected chrome or firefox but got {request.config.getoption('--browser')}")

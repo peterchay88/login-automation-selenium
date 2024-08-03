@@ -1,7 +1,7 @@
 from selenium.webdriver.common.by import By
 from selenium.webdriver.remote.webdriver import WebDriver
 from selenium.webdriver.remote.webelement import WebElement
-
+import logging as logger
 from page_objects.base_page import BasePage
 
 
@@ -25,6 +25,7 @@ class ExceptionsPage(BasePage):
         This method opens the exceptions web page
         :return:
         """
+        logger.info(f"Launching web page {self.__url}")
         super()._open_web_page(url=self.__url)
 
     def click_add_button(self):
@@ -32,6 +33,7 @@ class ExceptionsPage(BasePage):
         This Method clicks the add button on the exceptions page
         :return:
         """
+        logger.info("Clicking add button")
         super()._click(locator=self.__add_button)
 
     def click_edit_button(self):
@@ -39,6 +41,7 @@ class ExceptionsPage(BasePage):
         This Method clicks the edit button on the exceptions page
         :return:
         """
+        logger.info("Clicking edit button")
         super()._click(locator=self.__edit_button)
 
     def click_row_one_save_button(self):
@@ -46,6 +49,7 @@ class ExceptionsPage(BasePage):
         This Method clicks the save button on row one on the exceptions page
         :return:
         """
+        logger.info("Clicking save button on row one")
         super()._click(locator=self.__row_one_save_button)
 
     def click_row_two_save_button(self):
@@ -53,6 +57,7 @@ class ExceptionsPage(BasePage):
         This Method clicks the save button on row two on the exceptions page
         :return:
         """
+        logger.info("Clicking save button on row two")
         super()._click(locator=self.__row_two_save_button)
 
     def is_row_two_displayed(self, time: int = 10) -> bool:
@@ -60,6 +65,7 @@ class ExceptionsPage(BasePage):
         This method checks to see if row 2 on the exceptions page is displayed
         :return:
         """
+        logger.info("Checking if row two is displayed on the web page")
         return super()._is_displayed(locator=self.__second_row_input, time=time)
 
     def is_saved_confirmation_message_displayed(self) -> bool:
@@ -68,6 +74,7 @@ class ExceptionsPage(BasePage):
         of favorite foods appears on the page
         :return:
         """
+        logger.info("Checking to see if the saved confirmation modal is displayed")
         return super()._is_displayed(locator=self.__saved_confirmation_message)
 
     def clear_text_in_row_one_input(self):
@@ -75,6 +82,7 @@ class ExceptionsPage(BasePage):
         This method clears the text in the row 1 input field
         :return:
         """
+        logger.info("Clearing text in row one")
         super()._clear_text(locator=self.__first_row_input)
 
     def get_text_from_confirmation_msg(self) -> str:
@@ -82,6 +90,7 @@ class ExceptionsPage(BasePage):
         This method returns the text in the saved confirmation message on the exceptions page
         :return:
         """
+        logger.info(super()._get_element_text(locator=self.__saved_confirmation_message))
         return super()._get_element_text(locator=self.__saved_confirmation_message)
 
     def get_value_from_row_one_input(self) -> str:
@@ -89,6 +98,7 @@ class ExceptionsPage(BasePage):
         This method returns the text in the row one input field on the exceptions page
         :return:
         """
+        logger.info(super()._get_attribute(locator=self.__first_row_input, attribute="value"))
         return super()._get_attribute(locator=self.__first_row_input, attribute="value")
 
     def check_if_instructions_element_is_gone(self) -> WebElement:
@@ -97,6 +107,8 @@ class ExceptionsPage(BasePage):
         still showing or not
         :return:
         """
+        logger.info(f"Checking to see if instructions are not visible on the page:"
+                    f" {super()._wait_until_element_is_not_visible(locator=self.__instructions_text)}")
         return super()._wait_until_element_is_not_visible(locator=self.__instructions_text)
 
     def add_to_list_of_favorite_foods(self, text: str):
@@ -105,6 +117,7 @@ class ExceptionsPage(BasePage):
         Click Add button, Wait for second row to load, type into second input field, and push save
         :return:
         """
+        logger.info(f"Adding {text} to the list of favorite foods")
         self.click_add_button()
         super()._type_into_element(locator=self.__second_row_input, text=text, time=6)
         self.click_row_two_save_button()
@@ -116,6 +129,7 @@ class ExceptionsPage(BasePage):
         :param text: New text to be entered
         :return:
         """
+        logger.info(f"Editing row one with {text}")
         self.click_edit_button()
         super()._clear_text(locator=self.__first_row_input)
         super()._type_into_element(locator=self.__first_row_input, text=text)

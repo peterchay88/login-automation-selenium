@@ -1,5 +1,6 @@
 import pytest
 from page_objects.exceptions_page import ExceptionsPage
+import logging as logger
 
 
 pytestmark = [pytest.mark.exceptions]
@@ -15,6 +16,7 @@ class TestExceptions:
         3. Verify Row 2 is displayed
         :param driver:
         """
+        logger.info("Running Exceptions Test 1")
         exceptions_page = ExceptionsPage(driver=driver)
         exceptions_page.open_webpage()
         exceptions_page.click_add_button()
@@ -32,17 +34,18 @@ class TestExceptions:
         :param driver:
         :return:
         """
+        logger.info("Running Exceptions Test 2")
         exceptions_page = ExceptionsPage(driver=driver)
         exceptions_page.open_webpage()
         exceptions_page.add_to_list_of_favorite_foods(text="Hot Dogs")
         assert exceptions_page.is_saved_confirmation_message_displayed(), \
             "Error. Saved confirmation message was not found on the page."
 
-    @pytest.mark.parametrize("text, confirmation_msg", [
-        pytest.param("Hot Dogs", "Row 1 was saved", marks=pytest.mark.exception_tc03),
-        pytest.param("Ice Cream", "Row 1 was saved", marks=pytest.mark.exception_tc06)
+    @pytest.mark.parametrize("text, confirmation_msg, test_number", [
+        pytest.param("Hot Dogs", "Row 1 was saved", "3", marks=pytest.mark.exception_tc03),
+        pytest.param("Ice Cream", "Row 1 was saved", "6", marks=pytest.mark.exception_tc06)
     ])
-    def test_invalid_element_state(self, text, confirmation_msg, driver):
+    def test_invalid_element_state(self, text, confirmation_msg, test_number, driver):
         """
         1. Open webpage
         2. Clear input field
@@ -51,6 +54,7 @@ class TestExceptions:
         :param driver:
         :return:
         """
+        logger.info(f"Now running exception test {test_number}")
         exceptions_page = ExceptionsPage(driver=driver)
         exceptions_page.open_webpage()
         exceptions_page.edit_row_one_input(text=text)
@@ -69,6 +73,7 @@ class TestExceptions:
         :param driver:
         :return:
         """
+        logger.info("Now running exception test 4")
         exceptions_page = ExceptionsPage(driver=driver)
         exceptions_page.open_webpage()
         exceptions_page.click_add_button()
@@ -84,6 +89,7 @@ class TestExceptions:
         :param driver:
         :return:
         """
+        logger.info("Now running exception test 5")
         exceptions_page = ExceptionsPage(driver=driver)
         exceptions_page.open_webpage()
         exceptions_page.click_add_button()
