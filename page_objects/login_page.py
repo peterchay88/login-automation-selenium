@@ -1,6 +1,7 @@
 from selenium.webdriver.common.by import By
 from selenium.webdriver.remote.webdriver import WebDriver
 from page_objects.base_page import BasePage
+import logging as logger
 
 
 class LoginPage(BasePage):
@@ -18,6 +19,7 @@ class LoginPage(BasePage):
         This method opens a web page
         :return:
         """
+        logger.info(f"Opening web page {self.__url}")
         super()._open_web_page(self.__url)
 
     def execute_login(self, username: str, password: str):
@@ -28,6 +30,7 @@ class LoginPage(BasePage):
         :param password: Password used during login
         :return:
         """
+        logger.info(f"Logging in with the following credentials.. Username: {username} Password {password}")
         # Type into the username field
         super()._type_into_element(locator=self.__username_field, text=username)
         # Type into the password field
@@ -40,6 +43,7 @@ class LoginPage(BasePage):
         This method checks to see if the error message exists after a bad login attempt
         :return:
         """
+        logger.info("Checking to see if the login error is displayed on the page")
         return super()._is_displayed(locator=self.__login_error)
 
     def check_error_message_text(self) -> str:
@@ -47,5 +51,6 @@ class LoginPage(BasePage):
         This method checks the text of the error message
         :return:
         """
+        logger.info(f"Checking login error message: {super()._get_element_text(locator=self.__login_error)}")
         return super()._get_element_text(locator=self.__login_error, time=3)
 

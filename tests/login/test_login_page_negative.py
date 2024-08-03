@@ -1,16 +1,17 @@
 import pytest
 from page_objects.login_page import LoginPage
+import logging as logger
 
 pytestmark = [pytest.mark.negative, pytest.mark.login]
 
 
 class TestNegative:
 
-    @pytest.mark.parametrize("username, password, expected_error_msg", [
-        pytest.param("incorrectUser", "Password123", "Your username is invalid!", marks=pytest.mark.negative_1),
-        pytest.param("student", "incorrectPassword", "Your password is invalid!", marks=pytest.mark.negative_2)
+    @pytest.mark.parametrize("username, password, expected_error_msg, test_number", [
+        pytest.param("incorrectUser", "Password123", "Your username is invalid!", "1", marks=pytest.mark.negative_1),
+        pytest.param("student", "incorrectPassword", "Your password is invalid!", "2", marks=pytest.mark.negative_2)
     ])
-    def test_negative_login_username(self, username, password, expected_error_msg, driver):
+    def test_negative_login_username(self, username, password, expected_error_msg, test_number, driver):
         """
         This test confirms the correct error state if you enter the wrong username or password
         when trying to log in
@@ -24,6 +25,7 @@ class TestNegative:
         :param driver:
         :return:
         """
+        logger.info(f"Running test {test_number}")
         login_page = LoginPage(driver)
         login_page.open_browser()
         login_page.execute_login(username=username, password=password)

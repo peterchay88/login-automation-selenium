@@ -1,6 +1,7 @@
 from selenium.webdriver.common.by import By
 from selenium.webdriver.remote.webdriver import WebDriver
 from page_objects.base_page import BasePage
+import logging as logger
 
 
 class LoggedInSuccessfully(BasePage):
@@ -17,6 +18,7 @@ class LoggedInSuccessfully(BasePage):
         Returns the expected url for the web page when you log in successfully
         :return:
         """
+        logger.info(f"Returning expected URL: {self.__url}")
         return self.__url
 
     @property
@@ -25,6 +27,7 @@ class LoggedInSuccessfully(BasePage):
         Returns the header text from the web page when you log in successfully
         :return:
         """
+        logger.info(f"Header Text: {super()._get_element_text(locator=self.__header_locator)}")
         return super()._get_element_text(locator=self.__header_locator)
 
     @property
@@ -33,4 +36,5 @@ class LoggedInSuccessfully(BasePage):
         Checks to see if the logout button is displayed
         :return:
         """
+        logger.info(f"Is the logout button displayed: {super()._is_displayed(locator=self.__log_out_button)}")
         return super()._is_displayed(locator=self.__log_out_button)

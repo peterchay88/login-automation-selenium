@@ -1,13 +1,14 @@
 import pytest
 from page_objects.login_page import LoginPage
 from page_objects.logged_in_successfully import LoggedInSuccessfully
+import logging as logger
 
 pytestmark = [pytest.mark.positive, pytest.mark.login]
 
 
 class TestPositive:
 
-    @pytest.mark.tcid01
+    @pytest.mark.positive_1
     def test_login_positive(self, driver):
         """
         1. Navigate to web page
@@ -19,6 +20,7 @@ class TestPositive:
         :param driver:
         :return:
         """
+        logger.info("Running positive test 1")
         login_page = LoginPage(driver=driver)
         login_page.open_browser()
         login_page.execute_login(username="student", password="Password123")
